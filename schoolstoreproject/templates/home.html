@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+  <form action="home" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'schoolapp:new_page' %}"></a>
+  </form>
+</body>
+</html>
+{% endblock %}

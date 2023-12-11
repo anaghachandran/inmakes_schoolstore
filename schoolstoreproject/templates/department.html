@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Department{% endblock %}
+{% block content %}
+    <h1>Departments</h1>
+    <form action="{% url 'schoolapp:department' %}" method="post">
+        {% csrf_token %}
+        <label for="department">Select a Department:</label>
+        <select name="department" id="department">
+            {% for dept in departments %}
+                <option value="{{ dept }}">{{ dept }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Go to Wikipedia</button>
+    </form>
+    <a href="{% url 'schoolapp:home' %}">Return to Home Page</a>
+{% endblock %}

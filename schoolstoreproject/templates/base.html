@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bf3570dc49.js" crossorigin="anonymous"></script>
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+    <title>{% block title %}{% endblock %}</title>
+
+    <style>
+        body {background-color: RosyBrown;}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown {% if 'department' in request.path %} active {% endif %}">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Department</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'schoolapp:department' %}">Computer Science</a></li>
+                            <li><a class="dropdown-item" href="{% url 'schoolapp:department' %}">Commerce</a></li>
+                            <li><a class="dropdown-item" href="{% url 'schoolapp:department' %}">Social Science</a></li>
+                            <li><a class="dropdown-item" href="{% url 'schoolapp:department' %}">Physical Activity</a></li>
+                            <li><a class="dropdown-item" href="{% url 'schoolapp:department' %}">Music</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'schoolapp:logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'schoolapp:register' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'schoolapp:login' %}">Login</a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+        <div>
+            <img class="my_image my_image_padding" src="{% static 'img/banner.png' %}" width="1400px;" height="600px;">
+        </div>
+    </div>
+
+    {% block footer %}
+        <div class="footer navbar-fixed-button my_footer" style="text-align: center; position: fixed; bottom: 0; width: 100%;">
+            <p>&copy; ABC School Store. All rights Reserved</p>
+        </div>
+    {% endblock %}
+
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

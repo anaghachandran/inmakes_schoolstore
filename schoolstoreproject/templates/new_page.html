@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>This is a new page.</p>
+  {% if messages %}
+    {% for message in messages %}
+      <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+  <form method="post" action="{% url 'schoolapp:new_page' %}">
+    {% csrf_token %}
+            <input type="text" name="name" placeholder="Enter your name"><br>
+            <input type="text" name="dob" placeholder="Enter your DateOfBirth"><br>
+            <input type="text" name="age" placeholder="Enter your age"><br>
+            <label for="gender">GENDER:</label>
+            <select name="gender" id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+            <input type="text" name="phone_number" placeholder="Enter your phone number"><br>
+            <input type="text" name="email" placeholder="Enter your email"><br>
+            <input type="text" name="address" placeholder="Enter your Address"><br>
+            <label for="department">Department:</label>
+            <select name="department" id="department">
+                <option value="Computer Science">Computer Science</option>
+                <option value="Commerce">Commerce</option>
+                <option value="Social Science">Social Science</option>
+                <option value="Physical Activity">Physical Activity</option>
+                <option value="Music">Music</option>
+            </select><br>
+            <label for="course">Course:</label>
+            <select name="course" id="course">
+                <option value="it">IT</option>
+                <option value="ai">AI</option>
+                <option value="cybersecurity">CyberSecurity</option>
+                <option value="machinelearning">MachineLearning</option>
+                <option value="bba">BBA</option>
+                <option value="bcom">BCOM</option>
+                <option value="mcom">MCOM</option>
+                <option value="ca">CA</option>
+                <option value="history">History</option>
+                <option value="literature">Literature</option>
+                <option value="voilin">Voilin</option>
+                <option value="keyboard">Keyboard</option>
+                <option value="veena">Veena</option>
+                <option value="swimming">Swimming</option>
+                <option value="dance">Dance</option>
+                <option value="Yoga">Yoga</option>
+        </select><br>
+            <label for="purpose">Purpose:</label>
+            <select name="purpose" id="purpose">
+                <option value="enquiry">Enquiry</option>
+                <option value="place_order">Place Order</option>
+                <option value="return">Replacement</option>
+                <option value="return">Return</option>
+        </select><br>
+            <label>Materials Provide:</label><br>
+            <input type="checkbox" name="materials_provide" value="debit_notebook">Debit Notebook<br>
+            <input type="checkbox" name="materials_provide" value="pen">Pen<br>
+            <input type="checkbox" name="materials_provide" value="exam_papers">Exam Papers<br>
+            <button type="submit">Submit</button>
+  </form>
+  <a href="{% url 'schoolapp:home' %}">Return to Home Page</a>
+{% endblock %}
+
+
+
